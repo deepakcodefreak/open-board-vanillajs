@@ -88,9 +88,12 @@ notesBtnContainer.addEventListener('click', () => {
             <button class="close notes-header-btn"></button>
         </div>
         <div class="notes-content">
-            <textarea></textarea>
+            <textarea id="text-area"></textarea>
         </div>`
     createStickyNote(template)
+    document.getElementById("text-area").addEventListener("mousedown", function (e) {
+        e.stopPropagation();
+    }, false);
 })
 
 
