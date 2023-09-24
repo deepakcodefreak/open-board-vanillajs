@@ -44,11 +44,9 @@ canvas.addEventListener('mousedown', (e) => {
         x: e.clientX,
         y: e.clientY
     }
+    beginPath(data)
     socket.emit('beginPath', data)
-    // beginPath({
-    //     x: e.clientX,
-    //     y: e.clientY
-    // })
+
 })
 
 canvas.addEventListener('mousemove', (e) => {
@@ -59,12 +57,7 @@ canvas.addEventListener('mousemove', (e) => {
             color: eraserSelectionOpen ? eraserStrokeColor : pencilStrokeColor,
             width: eraserSelectionOpen ? eraserStrokeWidth : pencilStrokeWidth
         }
-        // drawStroke({
-        //     x: e.clientX,
-        //     y: e.clientY,
-        //     color: eraserSelectionOpen ? eraserStrokeColor : pencilStrokeColor,
-        //     width: eraserSelectionOpen ? eraserStrokeWidth : pencilStrokeWidth
-        // })
+        drawStroke(data)
         socket.emit('drawStroke', data)
     }
 })
@@ -117,8 +110,8 @@ undoContainer.addEventListener('click', () => {
     const data = {
         undoRedoTracker, tracker
     }
+    undoRedoImageGenerator(data)
     socket.emit('undoRedo', data)
-    // undoRedoImageGenerator(data)
 })
 
 
@@ -127,8 +120,8 @@ redoContainer.addEventListener('click', () => {
     const data = {
         undoRedoTracker, tracker
     }
+    undoRedoImageGenerator(data)
     socket.emit('undoRedo', data)
-    // undoRedoImageGenerator(data)
 })
 
 function undoRedoImageGenerator({ undoRedoTracker, tracker }) {

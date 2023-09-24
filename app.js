@@ -16,15 +16,15 @@ io.on('connection', (socket) => {
     console.log('New connection')
 
     socket.on('beginPath', (data) => {
-        io.sockets.emit('beginPath', data)
+        socket.broadcast.emit('beginPath', data)
     })
 
     socket.on('drawStroke', (data) => {
-        io.sockets.emit('drawStroke', data)
+        socket.broadcast.emit('drawStroke', data)
     })
 
     socket.on('undoRedo', (data) => {
-        io.sockets.emit('undoRedo', data)
+        socket.broadcast.emit('undoRedo', data)
     })
 
 
